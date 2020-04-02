@@ -1,13 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 set -ue
 
-pwd_dir=$(cd $(dirname $0); pwd)
+shl_dir=$(cd $(dirname $0); pwd)
+base_dir=$(cd $(dirname ${shl_dir}); pwd)
 
 # mkdir
-mkdir ${pwd_dir}/conf
-mkdir ${pwd_dir}/log
-mkdir ${pwd_dir}/tmp
+for name in "conf" "log" "tmp"
+do
+    dir_name="${base_dir}/${name}"
+    if [ ! -d "${dir_name}" ]; then
+        echo "create directory ${dir_name}"
+        mkdir ${dir_name}
+    fi
+done
 
-# replace @BASE_DIR@
-sed -i -e "s|@BASE_DIR@|${pwd_dir}|" ${pwd_dir}/shl/template.sh
-sed -i -e "s|@BASE_DIR@|${pwd_dir}|" ${pwd_dir}/shl/functions.sh
+# .gitignore
+echo 'add the log and tmp directories to .gitignore'
+cat <<_EOT_ >> ${base_dir}/.gitignore
+/log/
+/tmp/
+_EOT_
