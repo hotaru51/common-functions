@@ -18,22 +18,22 @@ LOG=${LOG_DIR}/${SHL_NAME}_`date '+%Y%m%d'`.log
 # LOGHEADER, LOGFOOTER
 ##############################
 LOGHEADER() {
-echo "========== `date '+%Y/%m/%d(%a) %H:%M:%S'` ${SHL_FILE} start. ==========" | tee -a ${LOG}
+echo "========== `date '+%Y-%m-%d(%a) %H:%M:%S'` ${SHL_FILE} start. ==========" | tee -a ${LOG}
 }
 
 LOGFOOTER() {
-echo "========== `date '+%Y/%m/%d(%a) %H:%M:%S'` ${SHL_FILE} end.   ==========" | tee -a ${LOG}
+echo "========== `date '+%Y-%m-%d(%a) %H:%M:%S'` ${SHL_FILE} end.   ==========" | tee -a ${LOG}
 }
 
 ##############################
 # INFO_MSG, ERR_MSG, ABORT
 ##############################
 INFO_MSG() {
-echo "`date '+%Y/%m/%d(%a) %H:%M:%S'` `printf '%+7s' '[info]'` ${1}" | tee -a ${LOG}
+echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ${1}" | tee -a ${LOG}
 }
 
 ERR_MSG() {
-echo "`date '+%Y/%m/%d(%a) %H:%M:%S'` `printf '%+7s' '[error]'` ${1}" | tee -a ${LOG}
+echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[error]'` ${1}" | tee -a ${LOG}
 }
 
 ABORT() {
