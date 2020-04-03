@@ -1,14 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 ##############################
 # Script title
 #
 # Description
 ##############################
-FUNCTIONS=@BASE_DIR@/shl/functions.sh
-if [ -f ${FUNCTIONS} ]; then
-    . ${FUNCTIONS}
+set -ue
+
+SHL_DIR=$(cd $(dirname $0); pwd)
+LIB_DIR=${SHL_DIR}/lib
+if [ -f "${LIB_DIR}/functions.sh" ]; then
+    . ${LIB_DIR}/functions.sh
 else
-    echo "functions.sh not found."
+    echo "functions.sh not found." >&2
     exit 1
 fi
 

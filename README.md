@@ -5,7 +5,11 @@
 ## Setup
 
 ```
-git clone https://github.com/hotaru51/common-functions.git scripts
-cd scripts
+mkdir <適当なディレクトリ>
+cd <適当なディレクトリ>
+git init
+git submodule add https://github.com/hotaru51/common-functions.git lib
+cd lib
 ./setup.sh
 ```
+
