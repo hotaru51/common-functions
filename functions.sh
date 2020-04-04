@@ -3,7 +3,7 @@
 #
 # Common functions
 ##############################
-export LANG=C
+export LANG=C.UTF-8
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 SHL_DIR=$(cd $(dirname $0); pwd)
