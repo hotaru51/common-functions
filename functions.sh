@@ -6,6 +6,7 @@
 export LANG=C
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+SHL_DIR=$(cd $(dirname $0); pwd)
 CONF_DIR=${SHL_DIR}/conf
 LOG_DIR=${SHL_DIR}/log
 TMP_DIR=${SHL_DIR}/tmp
