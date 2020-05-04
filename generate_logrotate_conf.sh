@@ -13,6 +13,11 @@ cron_dir='/etc/logrotate.d'
 conf_file='script_log'
 conf_path="${cron_dir}/${conf_file}"
 
+if [ -d "{cron_dir}" ]; then
+    echo "${cron_dir} not found"
+    exit 1
+fi
+
 if [ -f "${conf_path}" ]; then
     mv ${conf_path} /tmp/`basename ${conf_path}`.$$.bak
     cat /dev/null > ${conf_path}
