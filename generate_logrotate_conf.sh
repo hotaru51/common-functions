@@ -26,7 +26,7 @@ fi
 find ${base_dir} -maxdepth 1 -type f -name '*.sh' | while read line
 do
     log_dir="${base_dir}/log"
-    log_file="$(echo `basename ${line}` | sed -e 's/\.sh"$/.log"/')"
+    log_file="$(echo `basename ${line}` | sed -e 's/\.sh$/.log/')"
     echo "\"${log_dir}/${log_file}\""
 done | head -c -1 > ${conf_path}
 
