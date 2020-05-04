@@ -14,7 +14,7 @@ TMP_DIR=${SHL_DIR}/tmp
 SHL_FILE=`basename $0`
 SHL_NAME=`basename $0 | sed -e 's/\..\+$//'`
 TMP=${TMP_DIR}/${SHL_NAME}_`date '+%Y%m%d'`_$$.tmp
-LOG=${LOG_DIR}/${SHL_NAME}_`date '+%Y%m%d'`.log
+LOG=${LOG_DIR}/${SHL_NAME}.log
 
 ##############################
 # LOGHEADER, LOGFOOTER
