@@ -10,7 +10,7 @@ fi
 shl_dir="$(cd $(dirname $0); pwd)"
 base_dir="$(cd $(dirname ${shl_dir}); pwd)"
 cron_dir='/etc/logrotate.d'
-conf_file='script_log'
+conf_file="`basename ${base_dir}`_log"
 conf_path="${cron_dir}/${conf_file}"
 
 if [ -d "{cron_dir}" ]; then
