@@ -17,17 +17,6 @@ TMP=${TMP_DIR}/${SHL_NAME}_`date '+%Y%m%d'`_$$.tmp
 LOG=${LOG_DIR}/${SHL_NAME}.log
 
 ##############################
-# LOGHEADER, LOGFOOTER
-##############################
-LOGHEADER() {
-    echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ========== ${SHL_FILE} start. ==========" | tee -a ${LOG}
-}
-
-LOGFOOTER() {
-    echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ========== ${SHL_FILE} end.   ==========" | tee -a ${LOG}
-}
-
-##############################
 # INFO_MSG, ERR_MSG, ABORT
 ##############################
 INFO_MSG() {
@@ -41,4 +30,15 @@ ERR_MSG() {
 ABORT() {
     LOGFOOTER
     exit 1
+}
+
+##############################
+# LOGHEADER, LOGFOOTER
+##############################
+LOGHEADER() {
+    INFO_MSG "START ${SHL_FILE}"
+}
+
+LOGFOOTER() {
+    INFO_MSG "END ${SHL_FILE}"
 }
