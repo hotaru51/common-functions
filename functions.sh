@@ -62,7 +62,6 @@ function ON_ERROR() {
 
     ERR_MSG "error occured on ${file} LINE: ${line} STATUS: ${status}"
     ERR_MSG "args: ${file} ${args}"
-    LOGFOOTER
 }
 
 trap 'ON_ERROR $LINENO "$@"' ERR
