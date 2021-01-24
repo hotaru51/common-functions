@@ -15,6 +15,8 @@ SHL_FILE=`basename $0`
 SHL_NAME=`basename $0 | sed -e 's/\..\+$//'`
 TMP=${TMP_DIR}/${SHL_NAME}_`date '+%Y%m%d'`_$$.tmp
 LOG=${LOG_DIR}/${SHL_NAME}.log
+LOG_STDOUT=${LOG_DIR}/${SHL_NAME}_stdout.log
+LOG_STDERR=${LOG_DIR}/${SHL_NAME}_stderr.log
 
 ##############################
 # INFO_MSG, ERR_MSG, ABORT
