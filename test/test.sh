@@ -32,6 +32,11 @@ echo "TMP=${TMP}" 2>&1 | tee -a ${LOG}
 echo "LOG=${LOG}" 2>&1 | tee -a ${LOG}
 
 INFO_MSG "sample message."
+ERR_MSG "sample error message."
+
+if [ "$#" -ge 1 ] && [ "$1" == "error" ]; then
+    false
+fi
 
 LOGFOOTER
 exit
