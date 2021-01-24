@@ -42,3 +42,25 @@ function LOGHEADER() {
 function LOGFOOTER() {
     INFO_MSG "END ${SHL_FILE}"
 }
+
+##############################
+# TRAP
+##############################
+function ON_ERROR() {
+    local status=$?
+    local file=$0
+    local line=$1
+    shift
+
+    args=''
+    for s in "$@"
+    do
+        args="${args}\"${s}\" "
+    done
+
+    ERR_MSG "error occured on ${file} LINE: ${line} STATUS: ${status}"
+    ERR_MSG "args: ${file} ${args}"
+    LOGFOOTER
+}
+
+trap 'ON_ERROR $LINENO "$@"' ERR
