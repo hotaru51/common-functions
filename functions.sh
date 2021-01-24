@@ -19,15 +19,15 @@ LOG=${LOG_DIR}/${SHL_NAME}.log
 ##############################
 # INFO_MSG, ERR_MSG, ABORT
 ##############################
-INFO_MSG() {
+function INFO_MSG() {
     echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ${1}" | tee -a ${LOG}
 }
 
-ERR_MSG() {
+function ERR_MSG() {
     echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[error]'` ${1}" | tee -a ${LOG}
 }
 
-ABORT() {
+function ABORT() {
     LOGFOOTER
     exit 1
 }
@@ -35,10 +35,10 @@ ABORT() {
 ##############################
 # LOGHEADER, LOGFOOTER
 ##############################
-LOGHEADER() {
+function LOGHEADER() {
     INFO_MSG "START ${SHL_FILE}"
 }
 
-LOGFOOTER() {
+function LOGFOOTER() {
     INFO_MSG "END ${SHL_FILE}"
 }
