@@ -15,30 +15,54 @@ SHL_FILE=`basename $0`
 SHL_NAME=`basename $0 | sed -e 's/\..\+$//'`
 TMP=${TMP_DIR}/${SHL_NAME}_`date '+%Y%m%d'`_$$.tmp
 LOG=${LOG_DIR}/${SHL_NAME}.log
-
-##############################
-# LOGHEADER, LOGFOOTER
-##############################
-LOGHEADER() {
-    echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ========== ${SHL_FILE} start. ==========" | tee -a ${LOG}
-}
-
-LOGFOOTER() {
-    echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ========== ${SHL_FILE} end.   ==========" | tee -a ${LOG}
-}
+LOG_STDOUT=${LOG_DIR}/${SHL_NAME}_stdout.log
+LOG_STDERR=${LOG_DIR}/${SHL_NAME}_stderr.log
 
 ##############################
 # INFO_MSG, ERR_MSG, ABORT
 ##############################
-INFO_MSG() {
+function INFO_MSG() {
     echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ${1}" | tee -a ${LOG}
 }
 
-ERR_MSG() {
+function ERR_MSG() {
     echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[error]'` ${1}" | tee -a ${LOG}
 }
 
-ABORT() {
+function ABORT() {
     LOGFOOTER
     exit 1
 }
+
+##############################
+# LOGHEADER, LOGFOOTER
+##############################
+function LOGHEADER() {
+    INFO_MSG "START ${SHL_FILE}"
+}
+
+function LOGFOOTER() {
+    INFO_MSG "END ${SHL_FILE}"
+}
+
+##############################
+# TRAP
+##############################
+function ON_ERROR() {
+    local status=$?
+    local file=$0
+    local line=$1
+    shift
+
+    args=''
+    for s in "$@"
+    do
+        args="${args}\"${s}\" "
+    done
+
+    ERR_MSG "error occured on ${file} LINE: ${line} STATUS: ${status}"
+    ERR_MSG "args: ${file} ${args}"
+    LOGFOOTER
+}
+
+trap 'ON_ERROR $LINENO "$@"' ERR

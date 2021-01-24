@@ -1,7 +1,9 @@
 FROM ubuntu:focal
 
 RUN apt update && apt -y install \
-    logrotate && \
+    logrotate \
+    vim \
+    less && \
     apt clean
 
 RUN mkdir /opt/test_scripts

@@ -26,8 +26,13 @@ fi
 find ${base_dir} -maxdepth 1 -type f -name '*.sh' | while read line
 do
     log_dir="${base_dir}/log"
-    log_file="$(echo `basename ${line}` | sed -e 's/\.sh$/.log/')"
+    shl_name="$(echo `basename ${line}` | sed -e 's/\.sh$//')"
+    log_file="${shl_name}.log"
+    log_std_out="${shl_name}_stdout.log"
+    log_std_err="${shl_name}_stderr.log"
     echo "\"${log_dir}/${log_file}\""
+    echo "\"${log_dir}/${log_std_out}\""
+    echo "\"${log_dir}/${log_std_err}\""
 done | head -c -1 > ${conf_path}
 
 cat <<EOT >> ${conf_path}
