@@ -30,6 +30,13 @@ echo "SHL_FILE=${SHL_FILE}" 2>&1 | tee -a ${LOG}
 echo "SHL_NAME=${SHL_NAME}" 2>&1 | tee -a ${LOG}
 echo "TMP=${TMP}" 2>&1 | tee -a ${LOG}
 echo "LOG=${LOG}" 2>&1 | tee -a ${LOG}
+echo "LOG_STDOUT=${LOG_STDOUT}" 2>&1 | tee -a ${LOG}
+echo "LOG_STDERR=${LOG_STDERR}" 2>&1 | tee -a ${LOG}
+
+{
+    echo 'stdout'
+    echo 'stderr' >&2
+} >> ${LOG_STDOUT} 2>> ${LOG_STDERR}
 
 INFO_MSG "sample message."
 ERR_MSG "sample error message."
