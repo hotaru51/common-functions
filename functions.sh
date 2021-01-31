@@ -15,18 +15,17 @@ SHL_FILE=`basename $0`
 SHL_NAME=`basename $0 | sed -e 's/\..\+$//'`
 TMP=${TMP_DIR}/${SHL_NAME}_`date '+%Y%m%d'`_$$.tmp
 LOG=${LOG_DIR}/${SHL_NAME}.log
-LOG_STDOUT=${LOG_DIR}/${SHL_NAME}_stdout.log
-LOG_STDERR=${LOG_DIR}/${SHL_NAME}_stderr.log
+LOG_ERR=${LOG_DIR}/${SHL_NAME}_error.log
 
 ##############################
 # INFO_MSG, ERR_MSG, ABORT
 ##############################
 function INFO_MSG() {
-    echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ${1}" | tee -a ${LOG}
+    echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[info]'` ${1}"
 }
 
 function ERR_MSG() {
-    echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[error]'` ${1}" | tee -a ${LOG}
+    echo "`date '+%Y-%m-%d(%a) %H:%M:%S'` `printf '%-7s' '[error]'` ${1}"
 }
 
 function ABORT() {
