@@ -28,11 +28,9 @@ do
     log_dir="${base_dir}/log"
     shl_name="$(echo `basename ${line}` | sed -e 's/\.sh$//')"
     log_file="${shl_name}.log"
-    log_std_out="${shl_name}_stdout.log"
-    log_std_err="${shl_name}_stderr.log"
+    log_err="${shl_name}_error.log"
     echo "\"${log_dir}/${log_file}\""
-    echo "\"${log_dir}/${log_std_out}\""
-    echo "\"${log_dir}/${log_std_err}\""
+    echo "\"${log_dir}/${log_err}\""
 done | head -c -1 > ${conf_path}
 
 cat <<EOT >> ${conf_path}
