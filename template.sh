@@ -15,6 +15,9 @@ else
     exit 1
 fi
 
+exec 1> >(tee -a ${LOG})
+exec 2> >(tee -a ${LOG_ERR})
+
 ##############################
 # Script main
 ##############################
