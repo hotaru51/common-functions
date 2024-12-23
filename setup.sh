@@ -15,8 +15,23 @@ do
 done
 
 # .gitignore
-echo 'add the log and tmp directories to .gitignore'
-cat <<_EOT_ >> ${base_dir}/.gitignore
+while :
+do
+    echo -n 'add these directories(log, tmp) to .gitignore? (y/n): '
+    read input
+
+    case "${input}" in
+        'y')
+            echo 'add the log and tmp directories to .gitignore'
+            cat <<_EOT_ >> ${base_dir}/.gitignore
 /log/
 /tmp/
 _EOT_
+            break
+            ;;
+        'n')
+            echo 'skip'
+            break
+            ;;
+    esac
+done

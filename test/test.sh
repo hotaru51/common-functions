@@ -15,28 +15,28 @@ else
     exit 1
 fi
 
+exec 1> >(tee -a ${LOG})
+exec 2> >(tee -a ${LOG_ERR})
+
 ##############################
 # Script main
 ##############################
 LOGHEADER
 
-echo "LANG=${LANG}" 2>&1 | tee -a ${LOG}
-echo "PATH=${PATH}" 2>&1 | tee -a ${LOG}
-echo "SHL_DIR=${SHL_DIR}" 2>&1 | tee -a ${LOG}
-echo "CONF_DIR=${CONF_DIR}" 2>&1 | tee -a ${LOG}
-echo "LOG_DIR=${LOG_DIR}" 2>&1 | tee -a ${LOG}
-echo "TMP_DIR=${TMP_DIR}" 2>&1 | tee -a ${LOG}
-echo "SHL_FILE=${SHL_FILE}" 2>&1 | tee -a ${LOG}
-echo "SHL_NAME=${SHL_NAME}" 2>&1 | tee -a ${LOG}
-echo "TMP=${TMP}" 2>&1 | tee -a ${LOG}
-echo "LOG=${LOG}" 2>&1 | tee -a ${LOG}
-echo "LOG_STDOUT=${LOG_STDOUT}" 2>&1 | tee -a ${LOG}
-echo "LOG_STDERR=${LOG_STDERR}" 2>&1 | tee -a ${LOG}
+echo "LANG=${LANG}"
+echo "PATH=${PATH}"
+echo "SHL_DIR=${SHL_DIR}"
+echo "CONF_DIR=${CONF_DIR}"
+echo "LOG_DIR=${LOG_DIR}"
+echo "TMP_DIR=${TMP_DIR}"
+echo "SHL_FILE=${SHL_FILE}"
+echo "SHL_NAME=${SHL_NAME}"
+echo "TMP=${TMP}"
+echo "LOG=${LOG}"
+echo "LOG_ERR=${LOG_ERR}"
 
-{
-    echo 'stdout'
-    echo 'stderr' >&2
-} >> ${LOG_STDOUT} 2>> ${LOG_STDERR}
+echo 'stdout'
+echo 'stderr' >&2
 
 INFO_MSG "sample message."
 ERR_MSG "sample error message."
